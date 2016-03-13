@@ -1,5 +1,8 @@
-import { reducer as router } from 'react-native-router-redux';
+import { combineReducers } from 'redux';
+import login from './login';
 
-export {
-  router,
-};
+const Ejiangnan = combineReducers({
+  login,
+});
+
+export default Ejiangnan;
