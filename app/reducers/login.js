@@ -1,16 +1,11 @@
-import { LOGIN_STATE_LOGIN, LOGIN_STATE_LOGOUT } from '../actions/actions'
+import * as Action from '../actions/actions'
 var CookieManager = require('react-native-cookies');
 
-export default function login(state, action) {
+export default function login(state = Action.LOGIN_STATE_LOGGED_OUT, action) {
   switch (action.type) {
     case 'LOGIN':
-      CookieManager.setFromResponse(
-          'http://e.jiangnan.edu.cn/main/loginIndex.do',
-          'user_session=JSESSIONID; path=/;'
-          (res) => { console.log("Set cookies", res); }
-          );
       return action.state;
     default:
-      return LOGIN_STATE_LOGOUT;
+      return state;
   }
 }

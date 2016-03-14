@@ -15,7 +15,10 @@ class App extends Component {
     return (
       <View>
         <TouchableNativeFeedback
-          onPress={() => dispatch(login())}
+          onPress={() => dispatch(login({
+            username: '1030514226',
+            password: '149416',
+          }))}
           background={TouchableNativeFeedback.Ripple('deeppink', false)}
           >
           <View>
