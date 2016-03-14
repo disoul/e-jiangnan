@@ -5,34 +5,53 @@ import React, {
   TouchableNativeFeedback,
   Text,
 } from 'react-native';
+import {
+  actions as routerActions,
+  NavBar,
+  Route,
+  Router,
+  Schema,
+  TabBar,
+  TabRoute
+} from 'react-native-router-redux';
+import * as Action from '../actions/actions';
 import { connect } from 'react-redux';
-import { login } from '../actions/actions';
-var Router = require('react-native-router');
+import { bindActionCreators } from 'redux';
+import LoginPage from '../pages/login';
+
+const mapStateToProps = state => ({
+  router: state.router,
+  login: state.login,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({
+    ...routerActions,
+  }, dispatch),
+  dispatch,
+});
+
+const defaultSchema = {
+  navBar: NavBar,
+  navLeftColor: '#FFFFFF',
+  navTint: '#224655',
+  navTitleColor: '#FFFFFF',
+  navTitleStyle: {
+    fontFamily: 'Avenir Next',
+    fontSize: 18,
+  },
+};
 
 class App extends Component {
   render() {
-    const { dispatch } = this.props;
+    console.log(this.props);
     return (
-      <View>
-        <TouchableNativeFeedback
-          onPress={() => dispatch(login({
-            username: '1030514226',
-            password: '149416',
-          }))}
-          background={TouchableNativeFeedback.Ripple('deeppink', false)}
-          >
-          <View>
-            <Text>Login</Text>
-          </View>
-        </TouchableNativeFeedback>
-      </View>
+      <Router {...this.props} initial="Login">
+
+        <Route name="Login" component={LoginPage} type="reset"/>
+      </Router>
     );
   }
 }
 
-function select(state) {
-  return {
-  };
-}
-
-export default connect(select)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

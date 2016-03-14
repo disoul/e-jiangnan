@@ -8,7 +8,9 @@ import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
 import { createStore,applyMiddleware } from 'redux';
 import App from './app/components/app';
-import Ejiangnan from './app/reducers/index';
+import Ejiangnan from './app/reducers';
+import LoginPage from './app/pages/login';
+
 
 const  loggerMiddleware = createLogger();
 const createStoreWithMiddleware = applyMiddleware(

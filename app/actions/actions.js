@@ -8,11 +8,11 @@ export function logging_in() {
 };
 
 export function logged_in() {
-  return { type: 'LOGIN', state: LOGIN_STATE_LOGGED_IN }
+  return { type: 'LOGIN', state: LOGIN_STATE_LOGGED_IN, info: ''}
 };
 
 export function logged_failed(errorinfo) {
-  return { type: 'LOGIN', state: LOGIN_STATE_LOGGED_FAILED, error: errorinfo }
+  return { type: 'LOGIN', state: LOGIN_STATE_LOGGED_FAILED, info: errorinfo }
 }
 
 export function login(form) {
