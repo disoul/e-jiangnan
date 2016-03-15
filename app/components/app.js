@@ -47,7 +47,6 @@ class App extends Component {
     console.log(this.props);
     return (
       <Router {...this.props} initial="Login">
-
         <Route name="Login" component={LoginPage} type="reset"/>
       </Router>
     );
