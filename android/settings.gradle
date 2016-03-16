@@ -2,4 +2,6 @@ rootProject.name = 'ejiangnan'
 
 include ':app'
 include ':react-native-cookies'
+include ':react-native-toast'
 project(':react-native-cookies').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-cookies/android')
+project(':react-native-toast').projectDir = new File(rootProject.projectDir, '../node_modules/@remobile/react-native-toast/android')

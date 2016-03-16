@@ -5,6 +5,8 @@ import com.psykar.cookiemanager.CookieManagerPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
+import com.remobile.toast.*;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,7 +38,8 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-        new CookieManagerPackage()
+        new CookieManagerPackage(),
+        new RCTToastPackage()
         );
     }
 }

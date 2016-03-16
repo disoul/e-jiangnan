@@ -6,7 +6,10 @@ import React, {
   Text,
   TextInput,
 } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
+import Toast from 'react-native-root-toast';
 import * as Action from '../actions/actions';
+
 
 export default class LoginPage extends Component {
   constructor(props: any) {
@@ -47,6 +50,28 @@ export default class LoginPage extends Component {
             <Text>Login</Text>
           </View>
         </TouchableNativeFeedback>
+        <Spinner 
+          visible={
+            this.props.login.state == Action.LOGIN_STATE_LOGGING_IN
+          } 
+          />
+        <Toast
+          visible={
+            this.props.login.state == Action.LOGIN_STATE_LOGGED_IN
+          }
+          position={-100}
+          shadow={true}
+          animation={true}
+          hideOnPress={true}
+          >登录成功!</Toast>
+        <Toast
+          visible={
+            this.props.login.state == Action.LOGIN_STATE_LOGGED_FAILED
+          }
+          position={-100}
+          shadow={true}
+          animation={true}
+          >登录失败</Toast>
       </View>
     );
   }
