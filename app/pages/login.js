@@ -71,7 +71,7 @@ export default class LoginPage extends Component {
           position={-100}
           shadow={true}
           animation={true}
-          >登录失败</Toast>
+          >登录失败({this.props.login.info})</Toast>
       </View>
     );
   }

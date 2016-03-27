@@ -31,6 +31,9 @@ export function login(form) {
       } else {
         dispatch(logged_in()); 
       }
+    })
+    .catch(error => {
+      dispatch(logged_failed(error.toString()));
     });
   }
 }
