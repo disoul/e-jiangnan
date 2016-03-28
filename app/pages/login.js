@@ -17,10 +17,27 @@ export default class LoginPage extends Component {
     this.fields = {
       username: null,
       password: null,
+    };
+
+    this.routeLock = false;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { dispatch, actions } = this.props;
+    if (this.props.login.state === Action.LOGIN_STATE_LOGGED_OUT) {
+      console.log("loginout!!!");
+      this.routeLock = false;
+    }
+
+    if (!this.routeLock && this.props.login.state === Action.LOGIN_STATE_LOGGED_IN) {
+      console.log("login!!!");
+      this.routeLock = true;
+      actions.routes.Home()();
     }
   }
+
   render() {
-    const { dispatch } = this.props;
+    const { dispatch,actions } = this.props;
     return (
       <View>
         <View>
@@ -48,6 +65,16 @@ export default class LoginPage extends Component {
           >
           <View>
             <Text>Login</Text>
+          </View>
+        </TouchableNativeFeedback>
+        <TouchableNativeFeedback
+          background={ TouchableNativeFeedback.Ripple('deeppink', false) }
+          onPress={
+            actions.routes.Home()
+          }
+          >
+          <View>
+            <Text>Go</Text>
           </View>
         </TouchableNativeFeedback>
         <Spinner 

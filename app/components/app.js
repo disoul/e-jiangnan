@@ -18,6 +18,7 @@ import * as Action from '../actions/actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LoginPage from '../pages/login';
+import HomePage from '../pages/home';
 
 const mapStateToProps = state => ({
   router: state.router,
@@ -47,7 +48,8 @@ class App extends Component {
     console.log(this.props);
     return (
       <Router {...this.props} initial="Login">
-        <Route name="Login" component={LoginPage} type="reset"/>
+        <Route name="Login" component={LoginPage} />
+        <Route name="Home" component={HomePage} />
       </Router>
     );
   }
