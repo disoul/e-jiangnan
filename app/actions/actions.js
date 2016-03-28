@@ -15,6 +15,10 @@ export function logged_failed(errorinfo) {
   return { type: 'LOGIN', state: LOGIN_STATE_LOGGED_FAILED, info: errorinfo }
 }
 
+export function user_update(data) {
+  return { type: 'USER', res: data }
+}
+
 export function login(form) {
   return dispatch => {
     dispatch(logging_in(form));
@@ -29,7 +33,8 @@ export function login(form) {
       if (errorinfo) {
         dispatch(logged_failed(errorinfo[1]));
       } else {
-        dispatch(logged_in()); 
+        dispatch(logged_in());
+        dispatch(user_update(res));
       }
     })
     .catch(error => {

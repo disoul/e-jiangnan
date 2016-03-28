@@ -10,6 +10,7 @@
     "react-native": "^0.21.0",
     "react-native-cookies": "0.0.5",
     "react-native-loading-spinner-overlay": "0.0.6",
+    "react-native-material-design": "^0.3.3",
     "react-native-root-toast": "^1.0.1",
     "react-native-router-redux": "^0.2.2",
     "react-redux": "^4.4.0",
@@ -17,5 +18,6 @@
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.0.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+  }
 }

@@ -7,26 +7,20 @@ import React, {
   TextInput,
 } from 'react-native';
 import * as Action from '../actions/actions';
-
+import ToolBar from '../components/toolbar';
 
 export default class HomePage extends Component {
   constructor(props: any) {
     super(props);
   }
+
   render() {
-    const { actions } = this.props;
+    const { user } = this.props;
     return (
       <View>
-      <TouchableNativeFeedback
-        background={ TouchableNativeFeedback.Ripple('deeppink', false) }
-        onPress={
-          actions.pop
-        }
-        >
-        <View>
-          <Text>Back</Text>
-        </View>
-      </TouchableNativeFeedback>
+        <ToolBar 
+          title={user.name}
+          />
       </View>
     )
   }

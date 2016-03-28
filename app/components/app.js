@@ -23,6 +23,7 @@ import HomePage from '../pages/home';
 const mapStateToProps = state => ({
   router: state.router,
   login: state.login,
+  user: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
