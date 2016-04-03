@@ -1,3 +1,7 @@
+'use strict';
+
+import { NativeModules } from 'react-native';
+
 export const LOGIN_STATE_LOGGED_IN = 'LOGIN_STATE_LOGGED_IN';
 export const LOGIN_STATE_LOGGING_IN = 'LOGIN_STATE_LOGGING_IN';
 export const LOGIN_STATE_LOGGED_OUT = 'LOGIN_STATE_LOGGED_OUT';
@@ -15,8 +19,12 @@ export function logged_failed(errorinfo) {
   return { type: 'LOGIN', state: LOGIN_STATE_LOGGED_FAILED, info: errorinfo }
 }
 
-export function user_update(data) {
-  return { type: 'USER', res: data }
+export function user_updating() {
+  return { type: 'USER', state: 'UPDATING'};
+}
+
+export function user_updated(name) {
+  return { type: 'USER', state: 'UPDATED', user: {"name": name}};
 }
 
 export function login(form) {
@@ -33,12 +41,23 @@ export function login(form) {
       if (errorinfo) {
         dispatch(logged_failed(errorinfo[1]));
       } else {
-        dispatch(logged_in());
-        dispatch(user_update(res));
+        dispatch(user_update(res._bodyText));
       }
     })
     .catch(error => {
       dispatch(logged_failed(error.toString()));
     });
   }
+}
+
+export function user_update(res) {
+  return dispatch => {
+    dispatch(user_updating());
+    NativeModules.HTMLParser.parse(res)
+    .then(name => {
+      dispatch(user_updated(name));
+      dispatch(logged_in());
+    })
+    
+  };
 }
