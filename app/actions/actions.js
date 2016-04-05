@@ -1,6 +1,5 @@
 'use strict';
-
-import { NativeModules } from 'react-native';
+import storage from '../storage/storage';
 
 export const LOGIN_STATE_LOGGED_IN = 'LOGIN_STATE_LOGGED_IN';
 export const LOGIN_STATE_LOGGING_IN = 'LOGIN_STATE_LOGGING_IN';
@@ -53,7 +52,9 @@ export function login(form) {
 export function user_update(res) {
   return dispatch => {
     dispatch(user_updating());
-    NativeModules.HTMLParser.parse(res)
+    storage.load({
+      key: 'name',
+    })
     .then(name => {
       dispatch(user_updated(name));
       dispatch(logged_in());

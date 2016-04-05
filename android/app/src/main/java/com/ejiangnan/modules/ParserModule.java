@@ -27,7 +27,7 @@ public class ParserModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void parse(String context, Promise promise) {
+    public void getName(String context, Promise promise) {
         try {
             Document document = Parser.parse(context, "http://e.jiangnan.edu.cn/ehome/index.do");
             Element nameEle = document.select(".personName a").first();
